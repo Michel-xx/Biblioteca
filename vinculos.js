@@ -35,17 +35,24 @@
 
     /* Mostra alunos e somente livros que ainda não foram vinculados. */
     biblioteca.atualizarOpcoesVinculo = () => {
+        const alunoSelect = document.querySelector("#aluno-vinculo");
+        const livroSelect = document.querySelector("#livro-vinculo");
+        const salvarVinculo = document.querySelector("#salvar-vinculo");
+
+        if (!alunoSelect || !livroSelect) return;
+
         const livrosDisponiveis = biblioteca.livros.filter((livro) =>
             !biblioteca.vinculos.some((vinculo) => vinculo.livroId === livro.id));
-        preencherOpcoes(document.querySelector("#aluno-vinculo"), biblioteca.alunos,
+        preencherOpcoes(alunoSelect, biblioteca.alunos,
             (aluno) => aluno.matricula,
             (aluno) => `${aluno.nome} (${aluno.matricula})`, "Cadastre um aluno primeiro");
-        preencherOpcoes(document.querySelector("#livro-vinculo"), livrosDisponiveis,
+        preencherOpcoes(livroSelect, livrosDisponiveis,
             (livro) => livro.id,
             (livro) => `${livro.titulo} - ${livro.autor}`,
-            biblioteca.livros.length === 0 ? "Cadastre um livro primeiro" : "Nenhum livro disponível");
-        document.querySelector("#salvar-vinculo").disabled =
-            biblioteca.alunos.length === 0 || livrosDisponiveis.length === 0;
+            biblioteca.livros.length === 0 ? "Cadastre um livro primeiro" : "Tem livro disponível");
+        if (salvarVinculo) {
+            salvarVinculo.disabled = biblioteca.alunos.length === 0 || livrosDisponiveis.length === 0;
+        }
     };
 
     /* Configura o formulário que associa um aluno a um livro disponível. */
@@ -64,7 +71,11 @@
                 return;
             }
 
-            biblioteca.vinculos.push({ matricula, livroId });
+            biblioteca.vinculos.push({
+                matricula,
+                livroId,
+                pegoEm: new Date().toISOString()
+            });
             biblioteca.salvarVinculos();
             status.textContent = "";
             evento.currentTarget.reset();

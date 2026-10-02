@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico de vínculos | Biblioteca</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="dados.js" defer></script>
+    <script src="interface.js" defer></script>
+    <script src="alunos.js" defer></script>
+    <script src="livros.js" defer></script>
+    <script src="vinculos.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <p>Biblioteca</p>
+        <h1>Histórico de vínculos excluídos</h1>
+        <nav>
+            <a href="index.html">Voltar para cadastros</a>
+        </nav>
+    </header>
+
+    <main>
+        <section aria-labelledby="titulo-historico">
+            <h2 id="titulo-historico">Vínculos encerrados</h2>
+            <button id="limpar-historico" type="button">Excluir todo o histórico</button>
+            <ul id="lista-historico" aria-label="Histórico de vínculos excluídos"></ul>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const botaoLimpar = document.querySelector("#limpar-historico");
+            if (botaoLimpar) {
+                botaoLimpar.addEventListener("click", () => {
+                    if (window.Biblioteca && typeof window.Biblioteca.limparHistorico === "function") {
+                        window.Biblioteca.limparHistorico();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

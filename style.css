@@ -21,6 +21,17 @@ header {
 
 header p { margin: 0 0 8px; color: #b8d8c6; }
 h1 { margin: 0; font-size: 30px; }
+header nav { margin-top: 14px; }
+header nav a {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 5px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    text-decoration: none;
+    font-weight: 700;
+}
+header nav a:hover { background: rgba(255, 255, 255, 0.16); }
 
 main {
     display: grid;

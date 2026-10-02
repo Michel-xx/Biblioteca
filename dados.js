@@ -17,6 +17,20 @@
     biblioteca.salvarVinculos = () => localStorage.setItem("vinculos", JSON.stringify(biblioteca.vinculos));
     biblioteca.salvarHistorico = () => localStorage.setItem("historico", JSON.stringify(biblioteca.historico));
 
+    /* Remove apenas um item do histórico ou limpa todo o histórico de vínculos. */
+    biblioteca.excluirHistorico = (registro) => {
+        if (!registro) return;
+        biblioteca.historico = biblioteca.historico.filter((item) => item !== registro);
+        biblioteca.salvarHistorico();
+        biblioteca.atualizarListas();
+    };
+    biblioteca.limparHistorico = () => {
+        if (!window.confirm("Excluir todo o histórico de vínculos?")) return;
+        biblioteca.historico = [];
+        biblioteca.salvarHistorico();
+        biblioteca.atualizarListas();
+    };
+
     /* Arquiva uma cópia dos vínculos com os nomes e a data de encerramento. */
     biblioteca.arquivarVinculos = (vinculos) => {
         const encerradoEm = new Date().toISOString();
@@ -30,6 +44,7 @@
                 matricula: vinculo.matricula,
                 tituloLivro: livro ? livro.titulo : "Livro removido",
                 autorLivro: livro ? livro.autor : "",
+                pegoEm: vinculo.pegoEm || new Date().toISOString(),
                 encerradoEm
             });
         });
