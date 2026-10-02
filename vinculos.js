@@ -1,6 +1,20 @@
 (() => {
     const biblioteca = window.Biblioteca;
 
+    /* Arquiva uma associação encerrada e devolve o livro à lista de disponíveis. */
+    biblioteca.excluirVinculo = (vinculo) => {
+        if (!window.confirm("Enviar este vínculo ao histórico? O livro ficará disponível novamente.")) return;
+
+        const indice = biblioteca.vinculos.findIndex((registro) =>
+            registro.matricula === vinculo.matricula && registro.livroId === vinculo.livroId);
+        if (indice === -1) return;
+
+        biblioteca.arquivarVinculos([biblioteca.vinculos[indice]]);
+        biblioteca.vinculos.splice(indice, 1);
+        biblioteca.salvarVinculos();
+        biblioteca.atualizarListas();
+    };
+
     /* Preenche um seletor com registros e uma opção inicial explicativa. */
     function preencherOpcoes(elemento, registros, valor, texto, vazio) {
         elemento.replaceChildren();
