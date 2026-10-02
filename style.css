@@ -1,0 +1,82 @@
+:root {
+    color-scheme: light;
+    font-family: "Trebuchet MS", sans-serif;
+    color: #202b28;
+    background: #f3f5ef;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f3f5ef 0%, #e5eee8 100%);
+}
+
+header {
+    padding: 32px max(24px, calc((100% - 1000px) / 2));
+    color: #fff;
+    background: #174c3e;
+}
+
+header p { margin: 0 0 8px; color: #b8d8c6; }
+h1 { margin: 0; font-size: 30px; }
+
+main {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 36px auto;
+    padding: 0 24px;
+}
+
+main > section:last-child { grid-column: 1 / -1; }
+
+section {
+    padding: 24px;
+    border: 1px solid #d7e1d9;
+    border-radius: 8px;
+    background: #fff;
+}
+
+h2 { margin: 0 0 20px; font-size: 21px; }
+form { display: grid; gap: 14px; }
+label { display: grid; gap: 6px; font-size: 14px; font-weight: 700; }
+
+input, select {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #bdcbc1;
+    border-radius: 5px;
+    font: inherit;
+}
+
+input:focus, select:focus { outline: 2px solid #368267; outline-offset: 1px; }
+
+button {
+    padding: 11px 14px;
+    border: 0;
+    border-radius: 5px;
+    color: #fff;
+    background: #236b52;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+button:hover { background: #174c3e; }
+button:disabled { background: #89978f; cursor: not-allowed; }
+.status { min-height: 20px; margin: 0; color: #a12d2d; font-size: 14px; }
+ul { display: grid; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
+li { padding: 11px 12px; border-left: 3px solid #75a98d; background: #f3f7f3; }
+.empty { color: #65736a; font-size: 14px; }
+.form-vinculo { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: end; }
+.form-vinculo .status, .form-vinculo button { grid-column: 1 / -1; }
+
+@media (max-width: 680px) {
+    main { grid-template-columns: 1fr; margin: 24px auto; }
+    main > section:last-child { grid-column: auto; }
+    .form-vinculo { grid-template-columns: 1fr; }
+    header { padding: 26px 24px; }
+}

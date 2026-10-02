@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastros | Biblioteca</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="dados.js" defer></script>
+    <script src="interface.js" defer></script>
+    <script src="alunos.js" defer></script>
+    <script src="livros.js" defer></script>
+    <script src="vinculos.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <p>Biblioteca</p>
+        <h1>Cadastros</h1>
+    </header>
+    <main>
+        <section aria-labelledby="titulo-aluno">
+            <h2 id="titulo-aluno">Cadastrar aluno</h2>
+            <form id="form-aluno">
+                <label for="nome-aluno">Nome do aluno</label>
+                <input id="nome-aluno" name="nome" type="text" required>
+                <label for="matricula-aluno">Matrícula</label>
+                <input id="matricula-aluno" name="matricula" type="text" required>
+                <p class="status" id="status-aluno" role="status"></p>
+                <button type="submit">Salvar aluno</button>
+            </form>
+            <ul id="lista-alunos" aria-label="Alunos cadastrados"></ul>
+        </section>
+
+        <section aria-labelledby="titulo-livro">
+            <h2 id="titulo-livro">Cadastrar livro</h2>
+            <form id="form-livro">
+                <label for="titulo-livro-input">Título do livro</label>
+                <input id="titulo-livro-input" name="titulo" type="text" required>
+                <label for="autor-livro">Autor</label>
+                <input id="autor-livro" name="autor" type="text" required>
+                <p class="status" id="status-livro" role="status"></p>
+                <button type="submit">Salvar livro</button>
+            </form>
+            <ul id="lista-livros" aria-label="Livros cadastrados"></ul>
+        </section>
+
+        <section aria-labelledby="titulo-vinculo">
+            <h2 id="titulo-vinculo">Vincular aluno a livro</h2>
+            <form id="form-vinculo" class="form-vinculo">
+                <label for="aluno-vinculo">Aluno</label>
+                <label for="livro-vinculo">Livro</label>
+                <select id="aluno-vinculo" name="matricula" required></select>
+                <select id="livro-vinculo" name="livroId" required></select>
+                <p class="status" id="status-vinculo" role="status"></p>
+                <button id="salvar-vinculo" type="submit">Salvar vínculo</button>
+            </form>
+            <ul id="lista-vinculos" aria-label="Alunos vinculados a livros"></ul>
+        </section>
+    </main>
+
+</body>
+</html>
