@@ -19,13 +19,26 @@
 
     /* Configura o formulário de cadastro e impede matrículas repetidas. */
     biblioteca.inicializarAlunos = () => {
+        const formulario = document.querySelector("#form-aluno");
+        const campoMatricula = document.querySelector("#matricula-aluno");
+
+        if (campoMatricula) {
+            campoMatricula.addEventListener("input", () => {
+                campoMatricula.value = campoMatricula.value.replace(/\D/g, "");
+            });
+        }
+
         /* Valida os dados, salva o aluno e atualiza a interface ao enviar. */
-        document.querySelector("#form-aluno").addEventListener("submit", (evento) => {
+        formulario.addEventListener("submit", (evento) => {
             evento.preventDefault();
-            const formulario = evento.currentTarget;
             const dados = new FormData(formulario);
             const matricula = dados.get("matricula").trim();
             const status = document.querySelector("#status-aluno");
+
+            if (!/^\d+$/.test(matricula)) {
+                status.textContent = "A matrícula deve conter apenas números.";
+                return;
+            }
 
             if (biblioteca.alunos.some((aluno) => aluno.matricula === matricula)) {
                 status.textContent = "Já existe um aluno com essa matrícula.";
