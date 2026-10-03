@@ -76,17 +76,72 @@ button {
     cursor: pointer;
 }
 
-button:hover { background: #174c3e; }
-button:disabled { background: #89978f; cursor: not-allowed; }
-.status { min-height: 20px; margin: 0; color: #a12d2d; font-size: 14px; }
-ul { display: grid; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
-li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 10px 8px 12px; border-left: 3px solid #75a98d; background: #f3f7f3; }
-li > span { min-width: 0; overflow-wrap: anywhere; }
-.botao-excluir { flex: 0 0 auto; padding: 7px 10px; color: #8c2828; background: #f8e8e6; font-size: 14px; }
-.botao-excluir:hover { color: #fff; background: #a23434; }
-.empty { color: #65736a; font-size: 14px; }
-.form-vinculo { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: end; }
-.form-vinculo .status, .form-vinculo button { grid-column: 1 / -1; }
+button:hover { 
+    background: #174c3e; 
+}
+
+button:disabled { 
+    background: #89978f; cursor: not-allowed; 
+}
+
+.status { 
+    min-height: 20px;
+    margin: 0;
+    color: #a12d2d;
+    font-size: 14px; 
+}
+
+
+ul { 
+    display: grid; 
+    gap: 8px; 
+    margin: 18px 0 0; 
+    padding: 0; 
+    list-style: none; 
+}
+
+li { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    gap: 12px; 
+    padding: 8px 10px 8px 12px; 
+    border-left: 
+    3px solid #75a98d; 
+    background: #f3f7f3; 
+}
+
+li > span { 
+    min-width: 0; 
+    overflow-wrap: anywhere; 
+}
+
+.botao-excluir { 
+    flex: 0 0 auto; 
+    padding: 7px 10px; 
+    color: #8c2828; 
+    background: #f8e8e6; 
+    font-size: 14px; 
+}
+
+.botao-excluir:hover { 
+    color: #fff; 
+    background: #a23434; 
+}
+
+.empty { 
+    color: #65736a; 
+    font-size: 14px; 
+}
+
+.form-vinculo { 
+    grid-template-columns: repeat(2, minmax(0, 1fr)); 
+    align-items: end; 
+}
+
+.form-vinculo .status, .form-vinculo button { 
+    grid-column: 1 / -1; 
+}
 
 @media (max-width: 680px) {
     main { grid-template-columns: 1fr; margin: 24px auto; }

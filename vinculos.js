@@ -41,17 +41,20 @@
 
         if (!alunoSelect || !livroSelect) return;
 
+        const alunosDisponiveis = biblioteca.alunos.filter((aluno) =>
+            !biblioteca.vinculos.some((vinculo) => vinculo.matricula === aluno.matricula));
         const livrosDisponiveis = biblioteca.livros.filter((livro) =>
             !biblioteca.vinculos.some((vinculo) => vinculo.livroId === livro.id));
-        preencherOpcoes(alunoSelect, biblioteca.alunos,
+        preencherOpcoes(alunoSelect, alunosDisponiveis,
             (aluno) => aluno.matricula,
-            (aluno) => `${aluno.nome} (${aluno.matricula})`, "Cadastre um aluno primeiro");
+            (aluno) => `${aluno.nome} (${aluno.matricula})`,
+            biblioteca.alunos.length === 0 ? "Cadastre um aluno primeiro" : "Nenhum aluno disponível");
         preencherOpcoes(livroSelect, livrosDisponiveis,
             (livro) => livro.id,
             (livro) => `${livro.titulo} - ${livro.autor}`,
             biblioteca.livros.length === 0 ? "Cadastre um livro primeiro" : "Tem livro disponível");
         if (salvarVinculo) {
-            salvarVinculo.disabled = biblioteca.alunos.length === 0 || livrosDisponiveis.length === 0;
+            salvarVinculo.disabled = alunosDisponiveis.length === 0 || livrosDisponiveis.length === 0;
         }
     };
 
@@ -68,6 +71,11 @@
             if (biblioteca.vinculos.some((vinculo) =>
                 vinculo.matricula === matricula && vinculo.livroId === livroId)) {
                 status.textContent = "Este aluno já está vinculado a esse livro.";
+                return;
+            }
+
+            if (biblioteca.vinculos.some((vinculo) => vinculo.matricula === matricula)) {
+                status.textContent = "Este aluno já está com um livro em mãos.";
                 return;
             }
 
