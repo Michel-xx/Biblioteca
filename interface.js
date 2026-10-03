@@ -2,7 +2,7 @@
     const biblioteca = window.Biblioteca;
 
     /* Exibe uma lista de registros ou uma mensagem quando ela estiver vazia. */
-    biblioteca.mostrarLista = (lista, elemento, vazio, formatar, excluir) => {
+    biblioteca.mostrarLista = (lista, elemento, vazio, formatar, excluir, textoBotao = "Excluir") => {
         if (!elemento) return;
 
         elemento.replaceChildren();
@@ -24,8 +24,8 @@
                 const botaoExcluir = document.createElement("button");
                 botaoExcluir.type = "button";
                 botaoExcluir.className = "botao-excluir";
-                botaoExcluir.textContent = "Excluir";
-                botaoExcluir.setAttribute("aria-label", `Excluir ${formatar(registro)}`);
+                botaoExcluir.textContent = textoBotao;
+                botaoExcluir.setAttribute("aria-label", `${textoBotao} ${formatar(registro)}`);
                 botaoExcluir.addEventListener("click", () => excluir(registro));
                 item.append(botaoExcluir);
             }
@@ -58,7 +58,8 @@
                 const livro = biblioteca.livros.find((registro) => registro.id === vinculo.livroId);
                 return `${aluno ? aluno.nome : "Aluno removido"} - ${livro ? livro.titulo : "Livro removido"}`;
             },
-            (vinculo) => biblioteca.excluirVinculo(vinculo));
+            (vinculo) => biblioteca.excluirVinculo(vinculo),
+            "Livro devolvido");
         biblioteca.mostrarLista(biblioteca.historico, listaHistorico, "Nenhum vínculo no histórico.",
             (registro) => {
                 const formatarData = (valor, etiqueta) => {

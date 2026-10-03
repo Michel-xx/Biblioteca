@@ -144,8 +144,19 @@ li > span {
 }
 
 @media (max-width: 680px) {
-    main { grid-template-columns: 1fr; margin: 24px auto; }
-    main > section:nth-child(3), main > section:last-child { grid-column: auto; }
-    .form-vinculo { grid-template-columns: 1fr; }
-    header { padding: 26px 24px; }
+    main { 
+        grid-template-columns: 1fr; 
+        margin: 24px auto; 
+    }
+
+    main > section:nth-child(3), main > section:last-child { grid-column: auto; 
+    }
+
+    .form-vinculo { 
+        grid-template-columns: 1fr; 
+    }
+
+    header { 
+        padding: 26px 24px; 
+    }
 }
